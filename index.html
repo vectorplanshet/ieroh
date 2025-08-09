@@ -1417,7 +1417,7 @@ if (!marker.trailCoords && shouldHaveTrail(marker.iconClass, marker.iconName)) {
     marker.trailLine = L.polyline(marker.trailCoords, {
         color: lineColor,
         weight: 3,
-        opacity: 0
+        opacity: 0.8
     }).addTo(map);
 }
 
@@ -1516,37 +1516,7 @@ map.on('touchend', function (e) {
     // Если палец поднят до завершения задержки, отменяем таймер
     clearTimeout(touchTimer);
 });
-fetch("front.json")
-  .then(response => response.json())
-  .then(data => {
-    L.geoJSON(data, {
-      style: function(feature) {
-        let color = '#bdbdbd'; // По умолчанию цвет "неизвестно"
-        let opacity = 1; // По умолчанию непрозрачность для "неизвестно"
-        let fillOpacity = 1; // По умолчанию заливка непрозрачная
 
-        if (feature.properties.name === 'Граница') {
-          color = '#000000'
-          opacity = 0.0; // Прозрачность границы
-          fillOpacity = 0.0; // Прозрачность заливки
-        } else if (feature.properties.name === 'Линия Фронта') {
-          color = '#000000'; // Цвет для "Оккупировано"
-          opacity = 1;
-          fillOpacity = 0.0;// Заливка полупрозрачная
-        }
-
-        // Возвращаем стиль с про   зрачностью
-        return {
-          color: color,
-          weight: 2,
-          opacity: opacity,
-          fillColor: color,
-          fillOpacity: fillOpacity
-        };
-      }
-    }).addTo(map);
-  })
-  .catch(error => console.error("Ошибка загрузки JSON:", error));
 fetch("front.json")
   .then(response => response.json())
   .then(data => {
