@@ -1194,7 +1194,7 @@ function getNextObjectId3() {
             </div>
         </div>
     `;
-    } else if (iconClass === 'kr') {
+    } if (iconClass === 'kr') {
         iconUrl = 'kalibr.png';
         iconClass = 'red-id';
     iconHtml = `
@@ -1272,7 +1272,7 @@ if (shouldHaveTrail(marker.iconClass, marker.iconName)) {
     marker.trailLine = L.polyline(marker.trailCoords, {
         color: lineColor,
         weight: 2,
-        opacity: 0.8
+        opacity: 0
     }).addTo(map);
 } else {
     marker.trailCoords = null;
